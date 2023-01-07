@@ -1,5 +1,5 @@
 {
-  "name": "nativebase-universal-starter-kit",
+  "name": "ktown-spike",
   "private": true,
   "workspaces": [
     "apps/*",
