@@ -8,7 +8,7 @@ module.exports = withNativebase({
     'react-native-vector-icons',
     'react-native-vector-icons-for-web',
     'solito',
-    'app',
+    'app'
   ],
   nextConfig: {
     projectRoot: __dirname,
@@ -18,15 +18,15 @@ module.exports = withNativebase({
       config.resolve.alias = {
         ...(config.resolve.alias || {}),
         'react-native$': 'react-native-web',
-        '@expo/vector-icons': 'react-native-vector-icons',
+        '@expo/vector-icons': 'react-native-vector-icons'
       }
       config.resolve.extensions = [
         '.web.js',
         '.web.ts',
         '.web.tsx',
-        ...config.resolve.extensions,
+        ...config.resolve.extensions
       ]
       return config
-    },
-  },
+    }
+  }
 })

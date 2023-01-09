@@ -10,9 +10,10 @@ export function NavigationProvider({ children }) {
         () => ({
           prefixes: [Linking.createURL('/')],
           config: {
-            initialRouteName: 'home',
+            initialRouteName: 'login',
             screens: {
-              home: '',
+              login: '',
+              // home: '',
               'user-detail': 'user/:id',
             },
           },
