@@ -4,7 +4,7 @@ import {
   Tooltip,
   IconButton,
   SunIcon,
-  MoonIcon,
+  MoonIcon
 } from 'native-base'
 
 export function ColorModeSwitch() {
@@ -12,18 +12,18 @@ export function ColorModeSwitch() {
   return (
     <Tooltip
       label={colorMode === 'dark' ? 'Enable light mode' : 'Enable dark mode'}
-      placement="bottom right"
+      placement='bottom right'
       openDelay={300}
       closeOnClick={false}
     >
       <IconButton
-        variant="unstyled"
-        position="absolute"
+        variant='unstyled'
+        position='absolute'
         top={12}
         right={8}
         onPress={toggleColorMode}
         icon={colorMode === 'dark' ? <SunIcon /> : <MoonIcon />}
-        accessibilityLabel="Color Mode Switch"
+        accessibilityLabel='Color Mode Switch'
       />
     </Tooltip>
   )

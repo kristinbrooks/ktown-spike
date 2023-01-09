@@ -1,5 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
+import LoginScreen from '../../features/login/login'
 import { HomeScreen } from '../../features/home/home'
 import { UserDetailScreen } from '../../features/user/user-detail'
 
@@ -9,17 +10,24 @@ export function NativeNavigation() {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="home"
-        component={HomeScreen}
+        name='login'
+        component={LoginScreen}
         options={{
-          title: 'Home',
+          title: 'Login'
         }}
       />
       <Stack.Screen
-        name="user-detail"
+        name='home'
+        component={HomeScreen}
+        options={{
+          title: 'Home'
+        }}
+      />
+      <Stack.Screen
+        name='user-detail'
         component={UserDetailScreen}
         options={{
-          title: 'User',
+          title: 'User'
         }}
       />
     </Stack.Navigator>

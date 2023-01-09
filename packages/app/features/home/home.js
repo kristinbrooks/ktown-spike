@@ -6,7 +6,6 @@ import {
   HStack,
   Text,
   Heading,
-  Code,
   Link,
   VStack,
   Button,
@@ -34,9 +33,6 @@ export function HomeScreen() {
           />
         </AspectRatio>
         <Heading>NativeBase + Solito ❤️</Heading>
-        <Text>
-          Edit <Code>packages/app/home/screen.tsx</Code> and save to reload.
-        </Text>
         <HStack alignItems="center" space="sm">
           <Link href="https://solito.dev/" isExternal>
             <Text
