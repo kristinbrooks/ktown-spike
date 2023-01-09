@@ -20,6 +20,7 @@ Table of Contents
     * [Install Expo CLI](#install-expo-cli)
     * [Create Blank Monorepo](#create-blank-monorepo)
     * [Update Dependencies](#update-dependencies)
+    * [Configure Supabase](#configure-supabase)
 * [Expo Go](#expo-go)
 * [Starting the App](#starting-the-app)
 * [Adding New Dependencies](#adding-new-dependencies)
@@ -202,6 +203,50 @@ cd ../../
 yarn
 ```
 Now you should be back in the root directory and everything should be configured to work on mobile and web.
+
+### Configure Supabase
+
+Create the database:
+1. Go to [Supabase](https://app.supabase.com).
+2. Click on "New Project".
+3. Enter details.
+4. Wait for the new database to launch.
+
+Install the dependencies in the project:
+```shell
+cd packages/app/
+yarn add @supabase/supabase-js
+cd ../../apps/expo/
+yarn add react-native-elements @react-native-async-storage/async-storage react-native-url-polyfill
+cd ../..
+yarn
+```
+
+Create helper file to initialize the Supabase client: 
+1. In `packages/app/` make a directory named `lib`.
+2. Inside the new directory make a file named `supabase.ts`.
+3. Add the following code to the file:
+   ```ts
+    import AsyncStorage from '@react-native-async-storage/async-storage'
+    import { createClient } from '@supabase/supabase-js'
+    
+    const supabaseUrl = YOUR_REACT_NATIVE_SUPABASE_URL
+    const supabaseAnonKey = YOUR_REACT_NATIVE_SUPABASE_ANON_KEY
+    
+    export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+      auth: {
+        storage: AsyncStorage as any,
+        autoRefreshToken: true,
+        persistSession: true,
+        detectSessionInUrl: false,
+      },
+    })
+    ```
+4. Go to [Supabase](https://app.supabase.com/projects) and click the projects database to open it.
+5. On the Dashboard, click 'Project Settings' then 'API'
+6. Copy the 'URL' and paste it into the `supabaseUrl` variable in the file we made.
+7. Then copy the 'anon public' API key and paste it into the `supabaseAnonKey` variable.
+
 
 ## Expo Go
 

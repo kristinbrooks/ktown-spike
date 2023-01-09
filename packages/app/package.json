@@ -5,6 +5,7 @@
   "dependencies": {
     "@react-navigation/native": "^6.0.8",
     "@react-navigation/native-stack": "^6.5.0",
+    "@supabase/supabase-js": "^2.2.3",
     "expo-linking": "^3.0.0",
     "native-base": "3.4.19",
     "react-native-svg": "12.3.0",
