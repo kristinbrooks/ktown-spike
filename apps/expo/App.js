@@ -12,8 +12,8 @@
 import 'react-native-url-polyfill/auto'
 import { useState, useEffect } from 'react'
 import { supabase } from 'app/lib/supabase'
-import Auth from 'app/components/Auth'
-import Account from 'app/components/Account'
+import Auth from 'app/features/login/Auth'
+import Account from 'app/features/user/Account'
 import { View } from 'react-native'
 
 export default function App() {

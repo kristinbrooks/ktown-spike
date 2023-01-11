@@ -1,23 +1,14 @@
-import { Provider } from 'app/provider'
-import Head from 'next/head'
-import React from 'react'
-import 'raf/polyfill'
+import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs'
+import { SessionContextProvider } from '@supabase/auth-helpers-react'
+import { useState } from 'react'
 
 function MyApp({ Component, pageProps }) {
+  const [supabaseClient] = useState(() => createBrowserSupabaseClient())
+
   return (
-    <>
-      <Head>
-        <title>Solito Example App</title>
-        <meta
-          name="description"
-          content="Expo + Next.js with Solito. By Fernando Rojo."
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Provider>
-        <Component {...pageProps} />
-      </Provider>
-    </>
+    <SessionContextProvider supabaseClient={supabaseClient} initialSession={pageProps.initialSession}>
+      <Component {...pageProps} />
+    </SessionContextProvider>
   )
 }
 

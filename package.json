@@ -13,6 +13,6 @@
   },
   "scripts": {
     "native": "cd apps/expo && NODE_OPTIONS='--openssl-legacy-provider' expo start",
-    "web": "cd apps/next && NODE_OPTIONS='--openssl-legacy-provider' yarn next"
+    "web": "cd apps/next && NODE_OPTIONS='--openssl-legacy-provider' yarn dev"
   }
 }
