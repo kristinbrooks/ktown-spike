@@ -2,12 +2,15 @@ import { useState, useEffect } from 'react'
 import { supabase } from '../../lib/supabase'
 import { StyleSheet, View, Alert } from 'react-native'
 import { Button, Input } from 'react-native-elements'
+import { Switch } from 'native-base'
 
 export default function Account({ session }) {
   const [loading, setLoading] = useState(true)
   const [username, setUsername] = useState('')
-  const [fullName, setFullName] = useState('')
-  const [avatarUrl, setAvatarUrl] = useState('')
+  const [full_name, setFullName] = useState('')
+  const [avatar_url, setAvatarUrl] = useState('')
+  const [is_admin, setISAdmin] = useState(false)
+  // const toggleSwitch = () => setISAdmin(is_admin => !is_admin);
 
   useEffect(() => {
     if (session) getProfile()
@@ -20,7 +23,7 @@ export default function Account({ session }) {
 
       let { data, error, status } = await supabase
         .from('profiles')
-        .select(`username, website, avatar_url`)
+        .select(`username, full_name, avatar_url, is_admin`)
         .eq('id', session?.user.id)
         .single()
       if (error && status !== 406) {
@@ -31,6 +34,7 @@ export default function Account({ session }) {
         setUsername(data.username)
         setFullName(data.full_name)
         setAvatarUrl(data.avatar_url)
+        setAvatarUrl(data.is_admin)
       }
     } catch (error) {
       if (error instanceof Error) {
@@ -41,12 +45,8 @@ export default function Account({ session }) {
     }
   }
 
-  async function updateProfile({
-                                 username,
-                                 full_name,
-                                 avatar_url
-                               }
-  ) {
+  async function updateProfile({username, full_name, avatar_url, is_admin})
+  {
     try {
       setLoading(true)
       if (!session?.user) throw new Error('No user on the session!')
@@ -56,6 +56,7 @@ export default function Account({ session }) {
         username,
         full_name,
         avatar_url,
+        is_admin,
         updated_at: new Date()
       }
 
@@ -82,13 +83,16 @@ export default function Account({ session }) {
         <Input label='Username' value={username || ''} onChangeText={(text) => setUsername(text)} />
       </View>
       <View style={styles.verticallySpaced}>
-        <Input label='Name' value={fullName || ''} onChangeText={(text) => setFullName(text)} />
+        <Input label='Name' value={full_name || ''} onChangeText={(text) => setFullName(text)} />
       </View>
+      {/*<View style={styles.verticallySpaced}>*/}
+      {/*  <Switch label='is_admin' value={is_admin} />*/}
+      {/*</View>*/}
 
       <View style={[styles.verticallySpaced, styles.mt20]}>
         <Button
           title={loading ? 'Loading ...' : 'Update'}
-          onPress={() => updateProfile({ username, full_name, avatar_url: avatarUrl })}
+          onPress={() => updateProfile({ username, full_name, avatar_url, is_admin  })}
           disabled={loading}
         />
       </View>
